@@ -75,7 +75,7 @@ namespace TestWebApplication
                 client.Credentials = new System.Net.NetworkCredential() 
                 {
                     UserName = "lmetbeng@gmail.com",
-                    Password = "Kandy@5589"
+                    Password = ""
                 };
 
                 client.EnableSsl = true;
