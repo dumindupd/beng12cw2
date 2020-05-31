@@ -16,7 +16,6 @@ namespace TestWebApplication
 
         SqlConnection con;
         SqlCommand com;
-        SqlDataReader dreader;
         string sql;
 
         protected void Page_Load(object sender, EventArgs e)

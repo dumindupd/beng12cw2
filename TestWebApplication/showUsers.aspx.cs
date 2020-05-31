@@ -16,7 +16,7 @@ namespace TestWebApplication
         SqlDataAdapter da;
         SqlCommand com;
         DataTable dt;
-        string constr, sql;
+        string constr;
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -20,7 +20,11 @@
             <Columns>
                 <asp:BoundField DataField="usr_name" HeaderText="User name" />
                 <asp:BoundField DataField="usr_type" HeaderText="Type" />
-                <asp:BoundField DataField="usr_status" HeaderText="Status" />
+                <asp:TemplateField HeaderText="Status">
+                    <ItemTemplate>
+                        <a href="#" class="lnkstatus" id='<%# Eval("usr_name") %>'><%# Eval("usr_status") %></a>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -36,5 +40,32 @@
         <i class="fa fa-bomb"></i>
     </div>
     </form>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".lnkstatus").click(function () {
+                var uname = $(this).attr("id");
+                var cstatus = $(this).html();
+                if (cstatus=="Inactive") {
+                    stat = 1;
+                }
+                else if (cstatus == "Active") {
+                    stat = 0;
+                }
+                var result = confirm("Do you want to change the status of " + uname + "?");
+                if (result) {
+                    $.ajax({
+                        url: "UniService.asmx/changeLoginStatus",
+                        method: "post",
+                        dataType: "text",
+                        data: { uname: uname, stat: stat },
+                        success: function (data) {
+                            alert(data);
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
